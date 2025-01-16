@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Payment Prediction</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold mb-6">Customer Payment Prediction</h1>
+        <form action="/predict" method="POST" class="space-y-4">
+            <div class="space-y-2">
+                <label for="energy_meter_serial" class="block text-sm font-medium">Energy Meter Serial Number</label>
+                <input type="text" name="energy_meter_serial" id="energy_meter_serial" required class="w-full p-2 border border-gray-300 rounded">
+            </div>
+
+            <div class="space-y-2">
+                <label for="previous_month_payment" class="block text-sm font-medium">Previous Month Payment</label>
+                <input type="number" name="previous_month_payment" id="previous_month_payment" required step="any" class="w-full p-2 border border-gray-300 rounded">
+            </div>
+
+            <div class="space-y-2">
+                <label for="two_months_ago_payment" class="block text-sm font-medium">Two Months Ago Payment</label>
+                <input type="number" name="two_months_ago_payment" id="two_months_ago_payment" required step="any" class="w-full p-2 border border-gray-300 rounded">
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg">Predict Payment</button>
+        </form>
+
+        {% if predicted_payment %}
+        <div class="mt-6 bg-green-100 p-4 rounded-md">
+            <h2 class="text-xl font-semibold">Predicted Payment: </h2>
+            <p class="text-lg">{{ predicted_payment }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
